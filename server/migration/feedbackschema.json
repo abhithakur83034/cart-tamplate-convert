@@ -4,5 +4,11 @@
   },
 "userId": {
     "type": "String"
+  },
+"username": {
+    "type": "String"
+  },
+"useremail": {
+    "type": "String"
   }
 }

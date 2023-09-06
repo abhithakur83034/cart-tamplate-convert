@@ -6,13 +6,15 @@ import { toast } from "react-toastify";
 const Feedback = () => {
   const { register, handleSubmit, reset } = useForm();
   const user = JSON.parse(localStorage.getItem('user'));
-// console.log(user)
+console.log(user)
   const onSubmit = (data) => {
     const formData = {
       feedback: data.feedback,
       userId:  user._id, 
+      username:  user.name, 
+      useremail:  user.email, 
     };
-
+    
     axios
       .post("http://localhost:4500/fb/feedback", formData)
       .then((res) => {
@@ -48,7 +50,7 @@ const Feedback = () => {
                       placeholder="Send us your feedback..."
                       name="feedback"
                       {...register("feedback")}
-                    ></textarea>{" "}
+                    ></textarea>
                     <br />
                     <input
                       type="submit"

@@ -1,0 +1,31 @@
+/* Showfeedback.css */
+
+.main {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .feedback-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .feedback-item {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .feedback-item strong {
+    font-weight: bold;
+  }
+  
+  /* You can add more styles as needed */
+  

@@ -5,21 +5,22 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 
 const Profile = () => {
- const {id} = useParams();
+  const { register, handleSubmit } = useForm()
+
+  const { id } = useParams();
 
   const navigate = useNavigate()
   const user = JSON.parse(localStorage.getItem('user'))
-  // console.log(user);
+  console.log(user);
   const admin = JSON.parse(localStorage.getItem('admin'))
   // console.log(admin)
 
 
-  const { register, handleSubmit } = useForm()
 
   const onSubmit = (data) => {
     console.log(data)
     const file = data.image[0];
-    console.log(file.name)
+    console.log(file)
     const formData = new FormData();
     formData.append('image', file);
     formData.append('name', data.name);
@@ -30,10 +31,10 @@ const Profile = () => {
     formData.append('about', data.about);
 
 
-    axios.post(`http://localhost:4500/profile/updateprofile/${id}`,formData)
+    axios.post(`http://localhost:4500/profile/updateprofile/${id}`, formData)
       .then((res) => {
         console.log(res.data)
-        localStorage.setItem('user',JSON.stringify(res.data))
+        localStorage.setItem('user', JSON.stringify(res.data))
         toast.success("user data updated successfully")
       }).catch((error) => {
         console.log(error.response.data)
@@ -41,10 +42,8 @@ const Profile = () => {
       })
   }
 
-
-
   const handleEdit = (id) => {
-  navigate(`/profile/${id}`)
+    navigate(`/profile/${id}`)
   }
 
 
@@ -61,9 +60,9 @@ const Profile = () => {
                     <div className="col-xl-4">
 
                       <div className="card">
+                        
                         <div className="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
-                          <img src={`http://localhost:4500/img/${user.image}`} alt="Profile" className="rounded-circle" />
+                        <img src="assets/img/profile-img.jpg" alt="Admin-Img" className="rounded-circle" />
                           <h2>{admin.name}</h2>
                           <h3>{admin.adminemail}</h3>
                           <div className="social-links mt-2">
@@ -114,10 +113,13 @@ const Profile = () => {
                       <button className="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
                     </li>
 
-                    <li className="nav-item">
-                      <button className="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit" onClick={() => handleEdit(user._id) }>Edit Profile</button>
-                    </li>
-
+                    {
+                      user ? <li className="nav-item">
+                        <button className="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit" onClick={() => handleEdit(user._id)}>Edit Profile</button>
+                      </li>
+                        :
+                        ""
+                    }
 
 
                   </ul>
@@ -126,7 +128,15 @@ const Profile = () => {
                     <div className="tab-pane fade show active profile-overview" id="profile-overview">
                       <h5 className="card-title">About</h5>
                       {
-                        admin ? <p className="small fst-italic">{admin.about}  </p> : <p className="small fst-italic"> {user.about} </p>
+                        admin ?
+                        (
+                          <>
+                          <img src="assets/img/profile-img.jpg" alt="Admin-Img" className="rounded-circle" />
+                        <p className="small fst-italic">{admin.about}  </p> 
+                          </>
+                        )
+                        :
+                         <p className="small fst-italic"> {user.about} </p>
                       }
 
                       <h5 className="card-title">Profile Details</h5>
@@ -225,11 +235,6 @@ const Profile = () => {
                       }
 
 
-
-
-
-
-
                       {
                         admin ?
                           (
@@ -254,9 +259,7 @@ const Profile = () => {
                     </div>
 
                     {
-                      admin ? 
-                      "" 
-                      :
+                       !user ? " " :
                         (
                           <>
                             <div className="tab-pane fade profile-edit pt-3" id="profile-edit">
@@ -269,8 +272,8 @@ const Profile = () => {
                                     <div className="pt-2">
                                       {/* <input type="file" className="bi bi-upload" /> */}
                                       <label for="file">
-                                        <i className="bi bi-upload" style={{cursor:"pointer"}}></i>
-                                        <input type="file" id="file"  style={{display:"none"}} name="image"  {...register("image")} />
+                                        <i className="bi bi-upload" style={{ cursor: "pointer" }}></i>
+                                        <input type="file" id="file" style={{ display: "none" }} name="image"   {...register("image")} />
                                       </label>
                                     </div>
                                   </div>
@@ -279,97 +282,25 @@ const Profile = () => {
                                 <div className="row mb-3">
                                   <label for="fullName" className="col-md-4 col-lg-3 col-form-label">Full Name</label>
                                   <div className="col-md-8 col-lg-9">
-                                    <input name="fullName" type="text" className="form-control" id="fullName" defaultValue={user.name} {...register("name")} />
+                                    <input name="name" type="text" className="form-control" id="fullName" defaultValue={user.name} {...register("name")} />
                                   </div>
                                 </div>
 
-                                {
-                                  admin ?
-                                    <div className="tab-pane fade profile-edit pt-3" id="profile-edit">
 
-                                      <form onSubmit={handleSubmit(onSubmit)}>
-                                        <div className="row mb-3">
-                                          <label for="profileImage" className="col-md-4 col-lg-3 col-form-label">Profile Image</label>
-                                          <div className="col-md-8 col-lg-9">
-                                            <img src={`http://localhost:4500/img/${user.image}`} alt="Profile" />
-                                            <div className="pt-2">
-                                              <Link to="#" className="btn btn-primary btn-sm" title="Upload new profile image"><i className="bi bi-upload"></i></Link>
-                                              <Link to="#" className="btn btn-danger btn-sm" title="Remove my profile image"><i className="bi bi-trash"></i></Link>
-                                            </div>
-                                          </div>
-                                        </div>
+                                <div className="row mb-3">
+                                  <label for="about" className="col-md-4 col-lg-3 col-form-label">About</label>
+                                  <div className="col-md-8 col-lg-9">
+                                    <textarea name="about" className="form-control" id="about" style={{ height: "100px", resize:"none" }} {...register("about")}>{user.about}</textarea>
+                                  </div>
+                                </div>
 
-                                        <div className="row mb-3">
-                                          <label for="fullName" className="col-md-4 col-lg-3 col-form-label">Full Name</label>
-                                          <div className="col-md-8 col-lg-9">
-                                            <input name="fullName" type="text" className="form-control" id="fullName" placeholder={admin.name} {...register("name")} />
-                                          </div>
-                                        </div>
-
-                                        {
-                                          admin ?
-                                            ""
-                                            :
-                                            <div className="row mb-3">
-                                              <label for="about" className="col-md-4 col-lg-3 col-form-label">About</label>
-                                              <div className="col-md-8 col-lg-9">
-                                                <textarea name="about" className="form-control" id="about" style={{ height: "100px" }} {...register("about")}>{admin.about}</textarea>
-                                              </div>
-                                            </div>
-                                        }
-
-
-
-                                        <div className="row mb-3">
-                                          <label for="Country" className="col-md-4 col-lg-3 col-form-label">Country</label>
-                                          <div className="col-md-8 col-lg-9">
-                                            <input name="country" type="text" className="form-control" id="Country" defaultValue={admin.country} {...register("country")} />
-                                          </div>
-                                        </div>
-
-                                        <div className="row mb-3">
-                                          <label for="Address" className="col-md-4 col-lg-3 col-form-label">Address</label>
-                                          <div className="col-md-8 col-lg-9">
-                                            <input name="address" type="text" className="form-control" id="Address" defaultValue={admin.address} {...register("address")} />
-                                          </div>
-                                        </div>
-
-                                        <div className="row mb-3">
-                                          <label for="Phone" className="col-md-4 col-lg-3 col-form-label">Phone</label>
-                                          <div className="col-md-8 col-lg-9">
-                                            <input name="mobile" type="text" className="form-control" id="mobile" defaultValue={admin.mobile} {...register("mobile")} />
-                                          </div>
-                                        </div>
-
-                                        <div className="row mb-3">
-                                          <label for="Email" className="col-md-4 col-lg-3 col-form-label">Email</label>
-                                          <div className="col-md-8 col-lg-9">
-                                            <input name="email" type="email" className="form-control" id="Email" defaultValue={admin.email} {...register("email")} />
-                                          </div>
-                                        </div>
-
-
-                                        <div className="text-center">
-                                          <button type="submit" className="btn btn-primary">Save Changes</button>
-                                        </div>
-                                      </form>
-
-                                    </div>
-                                    :
-                                    <div className="row mb-3">
-                                      <label for="about" className="col-md-4 col-lg-3 col-form-label">About</label>
-                                      <div className="col-md-8 col-lg-9">
-                                        <textarea name="about" className="form-control" id="about" style={{ height: "100px" }} {...register("about")}>{user.about}</textarea>
-                                      </div>
-                                    </div>
-                                }
 
 
 
                                 <div className="row mb-3">
                                   <label for="Country" className="col-md-4 col-lg-3 col-form-label">Country</label>
                                   <div className="col-md-8 col-lg-9">
-                                    <input name="country" type="text" className="form-control" id="Country"  defaultValue={user.country} {...register("country")} />
+                                    <input name="country" type="text" className="form-control" id="Country" defaultValue={user.country} {...register("country")} />
                                   </div>
                                 </div>
 
@@ -398,19 +329,18 @@ const Profile = () => {
                                 <div className="text-center">
                                   <button type="submit" className="btn btn-primary">Save Changes</button>
                                 </div>
-                              </form>
 
+
+
+
+                              </form>
                             </div>
                           </>
                         )
                     }
-
-
                   </div>
-
                 </div>
               </div>
-
             </div>
           </div>
         </section>

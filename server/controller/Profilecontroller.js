@@ -1,6 +1,7 @@
 const UserModel = require("../model/usermodel");
 
 const updateProfile = async (req, res) => {
+  console.log(req.file)
   try {
     // Find the user by their unique identifier (e.g., user ID)
     const userId = req.params.id;

@@ -14,12 +14,13 @@ const Index = () => {
     }
 
     const userinfp = JSON.parse(localStorage.getItem('user'))
-    console.log(userinfp);
+    // console.log(userinfp);
     const admininfp = JSON.parse(localStorage.getItem('admin'))
+    console.log(admininfp)
     const user = JSON.parse(localStorage.getItem('usertoken'))
     const admin = JSON.parse(localStorage.getItem('admintoken'))
 
-
+console.log(admin)
 
     // const [theme, setTheme] = useState('')
 
@@ -74,7 +75,7 @@ const Index = () => {
                                                         (
                                                             <>
                                                                 <li>
-                                                                    <Link to="/profile" className="dropdown-item d-flex align-items-center" >
+                                                                    <Link to="/profile/:id" className="dropdown-item d-flex align-items-center" >
                                                                         <i className="bi bi-person"></i>
                                                                         <span>My Profile</span>
                                                                     </Link>
@@ -130,7 +131,7 @@ const Index = () => {
                                     <ul className="d-flex align-items-center">
                                         <li className="nav-item dropdown pe-3">
 
-                                            <Link to="#" className="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown">
+                                            <Link to="#" className="nav-link nav-profile d-flex align-items-center " data-bs-toggle="dropdown">
                                                 <img src="assets/img/profile-img.jpg" alt="Profile" className="rounded-circle" />
                                                 <span className="d-none d-md-block dropdown-toggle ps-2">{admininfp.name}</span>
                                             </Link>
@@ -146,12 +147,22 @@ const Index = () => {
                                                     admin || user ?
                                                         (
                                                             <>
+                                                               {
+                                                                user ?
                                                                 <li>
-                                                                    <Link to="/profile" className="dropdown-item d-flex align-items-center" >
-                                                                        <i className="bi bi-person"></i>
-                                                                        <span>My Profile</span>
-                                                                    </Link>
-                                                                </li>
+                                                                <Link to="/profile" className="dropdown-item d-flex align-items-center" >
+                                                                    <i className="bi bi-person"></i>
+                                                                    <span>My Profile</span>
+                                                                </Link>
+                                                            </li>
+                                                            :
+                                                            <li>
+                                                            <Link to="/profile" className="dropdown-item d-flex align-items-center" >
+                                                                <i className="bi bi-person"></i>
+                                                                <span>My Profile</span>
+                                                            </Link>
+                                                        </li>
+                                                               }
                                                                 <li>
                                                                     <hr className="dropdown-divider" />
                                                                 </li>
@@ -209,23 +220,7 @@ const Index = () => {
                         admin || user ?
                             (
                                 <>
-                                    <li class="nav-item">
-                                        <Link to="#" className="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" >
-                                            <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
-                                        </Link>
-                                        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                                            <li>
-                                                <a href="tables-general.html">
-                                                    <i class="bi bi-circle"></i><span>General Tables</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="/admintable">
-                                                    <i class="bi bi-circle"></i><span>Data Tables</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    
                                     {
                                         admin ?
                                             <li className="nav-item">
@@ -267,12 +262,22 @@ const Index = () => {
                                             <span>FAQ</span> </Link>
                                     </li>
 
+                                  {
+                                    user ?
                                     <li className="nav-item">
-                                        <Link to="/profile/:id" className="nav-link collapsed" >
-                                            <i className="bi bi-card-list"></i>
-                                            <span>Profile</span>
-                                        </Link>
-                                    </li>
+                                    <Link to="/profile/:id" className="nav-link collapsed" >
+                                        <i className="bi bi-card-list"></i>
+                                        <span>Profile</span>
+                                    </Link>
+                                </li>
+                                :
+                                <li className="nav-item">
+                                <Link to="/profile" className="nav-link collapsed" >
+                                    <i className="bi bi-card-list"></i>
+                                    <span>Profile</span>
+                                </Link>
+                            </li>
+                                  }
                                     <li className="nav-item">
                                         <Link to="/aboutus" className="nav-link collapsed" >
                                             <i className="bi bi-card-list"></i>
@@ -300,6 +305,20 @@ const Index = () => {
                                             <span>Feedback</span>
                                         </Link>
                                     </li>
+
+
+                                    {
+                                        admin ?
+
+                                            <li className="nav-item">
+                                                <Link to="/showfeedback" className="nav-link collapsed" >
+                                                    <i className="bi bi-card-list"></i>
+                                                    <span>Show Feedback</span>
+                                                </Link>
+                                            </li>
+                                            :
+                                            ""
+                                    }
                                 </>
                             )
                             :
