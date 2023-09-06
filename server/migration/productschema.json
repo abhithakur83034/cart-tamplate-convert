@@ -1,0 +1,21 @@
+{
+    "image": {
+      "type": "String"
+    },
+    "name": {
+      "type": "String"
+    },
+    "price": {
+      "type": "String"
+    },
+    "quality": {
+      "type": "String"
+    },
+    "select": {
+      "type": "String"
+    },
+    "quantity": {
+      "type": "String",
+      "default":1
+    }
+  }

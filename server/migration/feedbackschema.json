@@ -1,0 +1,8 @@
+{
+"feedback": {
+    "type": "String"
+  },
+"userId": {
+    "type": "String"
+  }
+}

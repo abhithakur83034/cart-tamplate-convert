@@ -1,0 +1,38 @@
+/* Define styles for the marquee container */
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 10px;
+}
+
+/* Define the scrolling text animation */
+.marquee {
+    /* display: inline-block; */
+    white-space: nowrap;
+    animation: alternate-marquees 40s linear infinite;
+    color: #030303;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Keyframes for the alternating marquee animation */
+@keyframes alternate-marquees {
+    0%, 100% {
+        transform: translateX(0%);
+        color: #00C853;
+    }
+    25% {
+        transform: translateX(-100%);
+        color: #FF5733;
+    }
+    50% {
+        transform: translateX(0%);
+        color: #00C853; 
+    }
+    75% {
+        transform: translateX(100%);
+        color: #333;
+    }
+}
