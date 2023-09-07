@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from './Footer'
 
 const ChatApp = () => {
   return (
@@ -6,6 +7,7 @@ const ChatApp = () => {
     <main id="main" class="main">
         <h1>Need Help</h1>
     </main>
+    <Footer/>
    </>
   )
 }

@@ -1,6 +1,7 @@
 const Address = require('../model/address');
 
 const address =async(req,res)=>{
+    // console.log(req.body)
     try {
         let Add = await Address.insertMany(req.body)
         return res.status(201).json({ Add })

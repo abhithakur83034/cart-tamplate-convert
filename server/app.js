@@ -28,6 +28,7 @@ app.use("/profile", profileRouter);
 // checkout payment=======================
 
 app.post("/api/create-checkout-session", async (req, res) => {
+  console.log("stripe",req.body)
   const products = req.body.carts;
   const lineItems = products.map((product) => ({
     price_data: {
@@ -45,8 +46,8 @@ app.post("/api/create-checkout-session", async (req, res) => {
     payment_method_types: ["card"],
     line_items: lineItems,
     mode: "payment",
-    success_url: "http://localhost:3000/components/success",
-    cancel_url: "http://localhost:3000/components/cancel",
+    success_url: "http://localhost:3000/success",
+    cancel_url: "http://localhost:3000/cancel",
   });
 
   res.json({ id: session.id });

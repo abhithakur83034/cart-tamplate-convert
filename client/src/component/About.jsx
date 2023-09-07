@@ -1,7 +1,7 @@
 import React from 'react'
 // import Index from './Index'
 import '../style/about.css'
-import { Link } from 'react-router-dom'
+import Footer from './Footer'
 const About = () => {
   return (
     <>
@@ -56,15 +56,7 @@ const About = () => {
           </div>
         </div>
       </main>
-      <footer id="footer" className="footer">
-          <div className="copyright">
-            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-          </div>
-          <div className="credits">
-
-            Designed by <Link to="https://bootstrapmade.com/">BootstrapMade</Link>
-          </div>
-        </footer>
+     <Footer/>
 
     </>
   )

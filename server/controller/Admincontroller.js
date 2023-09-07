@@ -20,10 +20,7 @@ const adminLogin = async (req, res) => {
       ADMIN.adminemail == req.body.email &&
       ADMIN.adminpassword == req.body.password
     ) {
-      // return res.status(201).json({
-      //     adminemail,
-      //     adminpassword
-      // })
+     
       const admintoken = jwt.sign({ ADMIN }, secret_key, { expiresIn: "2h" });
       res.send({
         ADMIN,
@@ -37,6 +34,17 @@ const adminLogin = async (req, res) => {
     console.log(error);
   }
 };
+
+
+const adminshow=async(req,res)=>{
+  try {
+    const admin = await ADMIN
+    res.status(201).send(admin)
+  } catch (error) {
+    console.log(error)
+  }
+}
 module.exports = {
   adminLogin,
+  adminshow,
 };

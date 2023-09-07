@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../style/index.css'
 import '../style/mar.css'
+import { useSelector } from "react-redux";
 const Index = () => {
     const navigate = useNavigate()
     const handleClick = () => {
@@ -16,11 +17,11 @@ const Index = () => {
     const userinfp = JSON.parse(localStorage.getItem('user'))
     // console.log(userinfp);
     const admininfp = JSON.parse(localStorage.getItem('admin'))
-    console.log(admininfp)
+    // console.log(admininfp)
     const user = JSON.parse(localStorage.getItem('usertoken'))
     const admin = JSON.parse(localStorage.getItem('admintoken'))
 
-console.log(admin)
+// console.log(admin)
 
     // const [theme, setTheme] = useState('')
 
@@ -32,6 +33,12 @@ console.log(admin)
     //     document.body.className = theme
     // }, [theme])
 
+
+
+
+
+    
+  const cartData = useSelector((state) => state.cartData);
 
     return (
         <>
@@ -232,12 +239,17 @@ console.log(admin)
                                             :
                                             ""
                                     }
-                                    {/* <li className="nav-item">
-                                        <Link to="/" className="nav-link collapsed" >
+                                    {
+                                        cartData.length !== 0 ?
+                                        <li className="nav-item">
+                                        <Link to="/cart" className="nav-link collapsed" >
                                             <i className="bi bi-card-list"></i>
-                                            <span>Show Product's</span>
+                                            <span>Cart <b style={{ color: "red" }}>{cartData.length}</b> </span>
                                         </Link>
-                                    </li> */}
+                                    </li>
+                                    :
+                                    ""
+                                    }
                                     <li className="nav-item">
                                         <Link to="/mens" className="nav-link collapsed" >
                                             <i className="bi bi-card-list"></i>
@@ -317,7 +329,12 @@ console.log(admin)
                                                 </Link>
                                             </li>
                                             :
-                                            ""
+                                            <li className="nav-item">
+                                                <Link to="/adminprofile" className="nav-link collapsed" >
+                                                    <i className="bi bi-card-list"></i>
+                                                    <span>Admin Profile</span>
+                                                </Link>
+                                            </li>
                                     }
                                 </>
                             )
@@ -350,7 +367,7 @@ console.log(admin)
                             <li className="nav-item">
                                 <Link to="/admintable" className="nav-link collapsed" >
                                     <i className="bi bi-card-list"></i>
-                                    <span>Tables</span> </Link>
+                                    <span>Registered User's</span> </Link>
                             </li>
                             :
                             ""

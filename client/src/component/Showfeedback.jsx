@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../style/showfeedback.css'
+import Footer from './Footer';
 const Showfeedback = () => {
   const [feedbackData, setFeedbackData] = useState([]);
   
@@ -16,6 +17,8 @@ const Showfeedback = () => {
   }, []);
 
   return (
+    <>
+    
     <main id="main" className="main">
       <h1>Show Feedback</h1>
       <ul className="feedback-list">
@@ -28,6 +31,8 @@ const Showfeedback = () => {
         ))}
       </ul>
     </main>
+    <Footer/>
+        </>
   );
 };
 

@@ -20,7 +20,9 @@
     "mongoose": "^7.4.3",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.4",
+    "react-redux": "^8.1.2",
+    "redux": "^4.2.1",
     "socket.io": "^4.7.2",
-    "stripe": "^13.2.0"
+    "stripe": "^13.4.0"
   }
 }

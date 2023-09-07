@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from 'react-toastify';
+import Footer from './Footer';
 
 const Profile = () => {
   const { register, handleSubmit } = useForm()
@@ -73,7 +74,6 @@ const Profile = () => {
                           </div>
                         </div>
                       </div>
-
                     </div>
                   </>
                 )
@@ -346,16 +346,7 @@ const Profile = () => {
         </section>
 
       </main>
-      <footer id="footer" className="footer">
-        <div className="copyright">
-          &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-        </div>
-        <div className="credits">
-
-          Designed by <Link to="https://bootstrapmade.com/">BootstrapMade</Link>
-        </div>
-      </footer>
-
+      <Footer/>
 
     </>
   )

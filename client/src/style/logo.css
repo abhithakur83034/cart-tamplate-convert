@@ -1,0 +1,12 @@
+/* styles.css */
+
+.logo {
+    text-decoration: none;
+    color: #000; /* Initial text color */
+    transition: color 0.3s; /* Smooth color transition over 0.3 seconds */
+  }
+  
+  .logo:hover {
+    color: #ff5733; /* Text color on hover */
+  }
+  

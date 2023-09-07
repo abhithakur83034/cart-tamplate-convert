@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import Footer from './Footer'
 
 const Resetpassword = () => {
   const {id, token} = useParams()
@@ -83,16 +84,7 @@ const Resetpassword = () => {
 
         </div>
       </main>
-      <footer id="footer" className="footer">
-          <div className="copyright">
-            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-          </div>
-          <div className="credits">
-
-            Designed by <Link to="https://bootstrapmade.com/">BootstrapMade</Link>
-          </div>
-        </footer>
-
+      <Footer/>
     </>
   )
 }

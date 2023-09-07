@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import Footer from './Footer'
 const Login = () => {
   const { register, handleSubmit, reset } = useForm()
   const navigate = useNavigate();
@@ -21,7 +22,6 @@ const Login = () => {
           reset();
           toast.success('user login');
           navigate('/')
-          // window.location.reload(true); 
         }
 
       }).catch((error) => {
@@ -97,15 +97,7 @@ const Login = () => {
 
          
       </main>
-      <footer id="footer" className="footer">
-          <div className="copyright">
-            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-          </div>
-          <div className="credits">
-
-            Designed by <Link to="https://bootstrapmade.com/">BootstrapMade</Link>
-          </div>
-        </footer>
+      <Footer/>
 
     </>
   )

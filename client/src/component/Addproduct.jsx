@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Footer from './Footer';
 const Addproduct = () => {
     const { register, handleSubmit, reset } = useForm()
 
@@ -42,13 +43,13 @@ const Addproduct = () => {
                     <div className="row ">
                         <div className="col-sm-4"></div>
                         <div className="col-sm-4">
-                            <div className="d-flex justify-content-center py-4">
+                            <div className="d-flex justify-content-center ">
                                 <Link to="#" className="logo d-flex align-items-center w-auto">
                                     <img src="assets/img/logo.png" alt="" />
                                     <span className="d-none d-lg-block">Next Cart.com</span>
                                 </Link>
                             </div>
-                            <div className="card  mb-3">
+                            <div className="card  mb-3 mt-2">
                                 <div className="card-title text-center fs-4">
                                     add product's
                                 </div>
@@ -94,16 +95,7 @@ const Addproduct = () => {
                     </div>
                 </div>
             </main>
-            <footer id="footer" className="footer">
-                <div className="copyright">
-                    &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-                </div>
-                <div className="credits">
-
-                    Designed by <Link to="https://bootstrapmade.com/">BootstrapMade</Link>
-                </div>
-            </footer>
-
+            <Footer/>
         </>
     )
 }

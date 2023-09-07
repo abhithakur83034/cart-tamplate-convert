@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import Footer from "./Footer";
 
 const Feedback = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -65,15 +65,7 @@ console.log(user)
           </div>
         </div>
       </main>
-      <footer id="footer" className="footer">
-          <div className="copyright">
-            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-          </div>
-          <div className="credits">
-
-            Designed by <Link to="https://bootstrapmade.com/">BootstrapMade</Link>
-          </div>
-        </footer>
+      <Footer/>
 
     </>
   );

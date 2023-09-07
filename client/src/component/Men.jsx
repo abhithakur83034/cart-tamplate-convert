@@ -2,8 +2,11 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import Footer from './Footer'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Men = () => {
+    const dispatch = useDispatch()
     const[data, setData] = useState([])
 
     useEffect(()=>{
@@ -17,22 +20,40 @@ const Men = () => {
     },[])
 // console.log(data)
    
-    const user = JSON.parse(localStorage.getItem('usertoken'))
+    const user = JSON.parse(localStorage.getItem('user'))
+    console.log(user)
+    const userID = user._id
+    console.log(userID)
     const admin = JSON.parse(localStorage.getItem('admintoken'))
 
 
-    const addtocarthandler=()=>{
-        if(user){
-            toast.success("item added to cart")
-        }else{
-            toast.warning("you have to login first")
+    const addtocartData = useSelector((state) => state.cartData);
+
+
+    const handleAddToCart = (item) => {
+      if (user) {
+        const existingCartItem = addtocartData.find((cartItem) => cartItem._id === item._id);
+        
+        if (existingCartItem) {
+          toast.warning("You have already added this product");
+        } else {
+          dispatch({
+            type: "ADD_TO_CART",
+            payload: { ...item,userID },
+          });
+          toast.success("Item added to cart");
         }
-    }
+      } else {
+        toast.warning("You have to login first");
+      }
+    };
+  
+    
   return (
     <>
     <main id="main" class="main">
 
-    <div className="container fluid mt-5">
+    <div className="container fluid ">
         <div className="row ">
             <div className="d-flex justify-content-center  py-4">
                 <Link to="#" className="logo d-flex align-items-center w-auto">
@@ -40,7 +61,7 @@ const Men = () => {
                     <span className="d-none d-lg-block">Next Cart.com</span>
                 </Link>
             </div>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row row-cols-1 row-cols-md-3 ">
                 {
                     data.map((item, index) => {
                         return (
@@ -58,7 +79,7 @@ const Men = () => {
                                                 admin ?
                                                     <button type="submit" className='btn btn-danger form-control'>Delete</button>
                                                     :
-                                                    <button type="submit" onClick={()=>addtocarthandler()} className='btn btn-success form-control'>Add To Cart</button>
+                                                    <button type="submit" onClick={() => handleAddToCart(item)} className='btn btn-success form-control'>Add To Cart</button>
 
                                             }
                                         </div>
@@ -74,15 +95,7 @@ const Men = () => {
 
     </div>
 </main>
- <footer id="footer" className="footer">
- <div className="copyright">
-   &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
- </div>
- <div className="credits">
-
-   Designed by <Link to="https://bootstrapmade.com/">BootstrapMade</Link>
- </div>
-</footer>
+<Footer/>
 </>
   )
 }
