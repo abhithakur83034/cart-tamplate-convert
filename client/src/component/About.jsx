@@ -5,11 +5,11 @@ import Footer from './Footer'
 const About = () => {
   return (
     <>
-      <main id="main" class="main">
+      <main id="main" className="main">
         <div className="container" style={{background:"rgba(192,192,192,0.3)"}}>
           <div className="row">
             <div className="col-sm-12">
-              <div class="container">
+              <div className="container">
                 <h2>Our Story</h2>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.

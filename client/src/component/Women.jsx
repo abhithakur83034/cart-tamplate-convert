@@ -27,10 +27,11 @@ const Women = () => {
     },[])
 // console.log(data)
    
-    const user = JSON.parse(localStorage.getItem('user'))
-    console.log(user)
-    const userID = user._id
-    console.log(userID)
+    const user = JSON.parse(localStorage.getItem('usertoken'))
+    // console.log(user)
+    const userdata = JSON.parse(localStorage.getItem('user'))
+    // const userID = user._id
+    // console.log(userID)
     const admin = JSON.parse(localStorage.getItem('admintoken'))
 
 
@@ -48,7 +49,7 @@ const Women = () => {
         } else {
           dispatch({
             type: "ADD_TO_CART",
-            payload: { ...item,userID },
+            payload: { ...item,userdata },
           });
           toast.success("Item added to cart");
         }
@@ -60,7 +61,7 @@ const Women = () => {
     
   return (
     <>
-    <main id="main" class="main">
+    <main id="main" className="main">
 
     <div className="container fluid ">
         <div className="row ">

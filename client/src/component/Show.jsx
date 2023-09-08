@@ -7,10 +7,9 @@ import Footer from './Footer';
 import { actionItem } from "../redux/action/action";
 import { useDispatch, useSelector } from 'react-redux';
 function Show() {
-    const user = JSON.parse(localStorage.getItem('user'))
-    console.log(user)
-    const userID = user._id
-    console.log(userID)
+    const user = JSON.parse(localStorage.getItem('usertoken'))
+    const userdata = JSON.parse(localStorage.getItem('user'))
+    // console.log(userdata)
     const admin = JSON.parse(localStorage.getItem('admintoken'))
     const [data, setData] = useState([]);
 
@@ -18,8 +17,8 @@ function Show() {
 
 
     
-  const addtocartData = useSelector((state) => state.cartData);
-        // console.log("show addtocart",addtocartData)
+  const addtocartData = useSelector((state) => state);
+        console.log("show addtocart",addtocartData.productData)
 
 
     const productData = useSelector((state) => state.productData);
@@ -36,7 +35,6 @@ function Show() {
             })
     }, [])
 
-    // Update the local state 'data' when 'productData' changes
     useEffect(() => {
         setData(productData.data.payload);
     }, [productData]);
@@ -56,7 +54,7 @@ function Show() {
           } else {
             dispatch({
               type: "ADD_TO_CART",
-              payload: { ...item,userID },
+              payload: { ...item,userdata },
             });
             toast.success("Item added to cart");
           }

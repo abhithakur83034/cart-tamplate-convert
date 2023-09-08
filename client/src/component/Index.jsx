@@ -14,24 +14,13 @@ const Index = () => {
         navigate('/');
     }
 
-    const userinfp = JSON.parse(localStorage.getItem('user'))
-    // console.log(userinfp);
+    const userinfo = JSON.parse(localStorage.getItem('user'))
+    // console.log(userinfo);
     const admininfp = JSON.parse(localStorage.getItem('admin'))
     // console.log(admininfp)
     const user = JSON.parse(localStorage.getItem('usertoken'))
     const admin = JSON.parse(localStorage.getItem('admintoken'))
 
-// console.log(admin)
-
-    // const [theme, setTheme] = useState('')
-
-    // const toggleTheme = () => {
-    //     theme === "dark-theme" ? setTheme('light-theme') : setTheme("dark-theme")
-    // }
-
-    // useEffect(() => {
-    //     document.body.className = theme
-    // }, [theme])
 
 
 
@@ -66,13 +55,13 @@ const Index = () => {
                                         <li className="nav-item dropdown pe-3">
 
                                             <Link to="#" className="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown">
-                                                <img src={`http://localhost:4500/img/${userinfp.image}`} alt="Profile" className="rounded-circle" />
-                                                <span className="d-none d-md-block dropdown-toggle ps-2">{userinfp.name}</span>
+                                                <img src={`http://localhost:4500/img/${userinfo.image}`} alt="Profile" className="rounded-circle" />
+                                                <span className="d-none d-md-block dropdown-toggle ps-2">{userinfo.name}</span>
                                             </Link>
                                             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                                                 <li className="dropdown-header">
-                                                    <h6>{userinfp.name}</h6>
-                                                    <span>{userinfp.mobile}</span>
+                                                    <h6>{userinfo.name}</h6>
+                                                    <span>{userinfo.mobile}</span>
                                                 </li>
                                                 <li>
                                                     <hr className="dropdown-divider" />

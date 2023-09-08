@@ -31,7 +31,7 @@ const Login = () => {
   }
   return (
     <>
-      <main id="main" class="main">
+      <main id="main" className="main">
         {/* <Index /> */}
         <div className="container" style={{background:"rgba(192,192,192,0.3)"}}>
 

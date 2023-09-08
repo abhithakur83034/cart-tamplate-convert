@@ -2,15 +2,14 @@ import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { loadStripe } from '@stripe/stripe-js';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { clearCart } from '../redux/action/action'; // Import your cart-clearing action
 
 const Address = () => {
+  const dispatch = useDispatch()
   const PUBLIC_STRIPE_PUBLISHABLE_KEY =
     'pk_test_51NiF8vSJv0p18kjN1GbZU336KaCkQWArr9WsaHT1QgugwrdsQO4RdyKZ2cr5oivj2Jb8asN5Xf52e9Jp0szzWid900XWszkGfO';
   const carts = useSelector((state) => state.cartData);
-  const dispatch = useDispatch(); // Initialize the Redux dispatch function
   console.log(carts);
   const { register, handleSubmit } = useForm();
 
@@ -64,11 +63,7 @@ const Address = () => {
       if (result.error) {
         console.log('Stripe error:', result.error);
       } else if (result.paymentIntent) {
-        // Payment was successful, you can handle success here
-
-        // Clear the cart after successful payment
-        dispatch(clearCart()); // Dispatch your clearCart action
-
+        dispatch({ type: "CLEAR_CART" })
         console.log('Payment successful');
       }
     } catch (error) {
@@ -79,88 +74,40 @@ const Address = () => {
   return (
     <>
       <main id="main" className="main">
-        <div class="container  mb-5">
+        <div className="container  mb-5">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div class="card">
-              <div class="card-title">
+            <div className="card">
+              <div className="card-title">
                 <h1>ADDRESS</h1>
               </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    First Name:
-                    <input
-                      type="text"
-                      name="firstName"
-                      class="form-control"
-                      placeholder="Enter First Name"
-                      {...register('firstName')}
-                    />
-                    <p class="coler"></p>
+              <div className="card-body">
+                <div className="row">
+                  <div className="col"> First Name:
+                  <input type="text" name="firstName" className="form-control" placeholder="Enter First Name" {...register('firstName')} /> <p className="coler"></p>
                   </div>
-                  <div class="col">
-                    Last Name:
-                    <input
-                      type="text"
-                      name="lastName"
-                      class="form-control"
-                      placeholder="Enter Last Name"
-                      {...register('lastName')}
-                    />
-                    <p class="coler"></p>
+                  <div className="col"> Last Name:
+                  <input type="text" name="lastName" className="form-control" placeholder="Enter Last Name" {...register('lastName')} /> <p className="coler"></p>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col">
-                    Address Line 1:
-                    <input
-                      type="text"
-                      name="addressLine1"
-                      class="form-control"
-                      placeholder="Enter Address Line 1"
-                      {...register('addressLine1')}
-                    />
-                    <p class="coler"></p>
+                <div className="row">
+                  <div className="col"> Address Line 1:
+                  <input type="text" name="addressLine1" className="form-control" placeholder="Enter Address Line 1" {...register('addressLine1')} /> <p className="coler"></p>
                   </div>
-                  <div class="col">
-                    Address Line 2:
-                    <input
-                      type="text"
-                      name="addressLine2"
-                      class="form-control"
-                      placeholder="Enter Address Line 2"
-                      {...register('addressLine2')}
-                    />
-                    <p class="coler"></p>
+                  <div className="col"> Address Line 2:
+                  <input type="text" name="addressLine2" className="form-control" placeholder="Enter Address Line 2" {...register('addressLine2')} /> <p className="coler"></p>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col">
-                    City:
-                    <input
-                      type="text"
-                      name="city"
-                      class="form-control"
-                      placeholder="Enter City"
-                      {...register('city')}
-                    />
-                    <p class="coler"></p>
+                <div className="row">
+                  <div className="col"> City:
+                  <input type="text" name="city" className="form-control" placeholder="Enter City" {...register('city')} /> <p className="coler"></p>
                   </div>
-                  <div class="col">
-                    Postal Code:
-                    <input
-                      type="text"
-                      name="postalCode"
-                      class="form-control"
-                      placeholder="Enter Postal Code"
-                      {...register('postalCode')}
-                    />
-                    <p class="coler"></p>
+                  <div className="col"> Postal Code:
+                  <input type="text" name="postalCode" className="form-control" placeholder="Enter Postal Code" {...register('postalCode')} /> <p className="coler"></p>
                   </div>
                 </div>
                 <button
                   type="submit"
-                  class="btn btn-outline-info mt-2"
+                  className="btn btn-outline-info mt-2"
                   onClick={makePayment}
                 >
                   Save Address

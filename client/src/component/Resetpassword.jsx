@@ -29,7 +29,7 @@ const Resetpassword = () => {
   }
   return (
     <>
-     <main id="main" class="main">
+     <main id="main" className="main">
         {/* <Index /> */}
         <div className="container">
 

@@ -38,8 +38,8 @@ const Profile = () => {
         localStorage.setItem('user', JSON.stringify(res.data))
         toast.success("user data updated successfully")
       }).catch((error) => {
-        console.log(error.response.data)
-        toast.error(error.response.data)
+        console.log(error.response.data.message)
+        toast.error(error.response.data.message)
       })
   }
 
@@ -273,7 +273,9 @@ const Profile = () => {
                                       {/* <input type="file" className="bi bi-upload" /> */}
                                       <label for="file">
                                         <i className="bi bi-upload" style={{ cursor: "pointer" }}></i>
-                                        <input type="file" id="file" style={{ display: "none" }} name="image"   {...register("image")} />
+                                        {/* <input type="file" id="file" name="image"   {...register("image")} /> */}
+                                        <input type="file" className='form-control' style={{ display: "none" }}  name='image' {...register('image')} />
+
                                       </label>
                                     </div>
                                   </div>

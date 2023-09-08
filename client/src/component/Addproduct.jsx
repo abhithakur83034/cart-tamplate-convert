@@ -38,7 +38,7 @@ const Addproduct = () => {
     }
     return (
         <>
-            <main id="main" class="main">
+            <main id="main" className="main">
                 <div className="container " style={{ background: "rgba(192,192,192,0.3)" }} >
                     <div className="row ">
                         <div className="col-sm-4"></div>

@@ -6,6 +6,3 @@ export const actionItem = (data) => {
     };
   };
   
-  export const clearCart = () => ({
-    type: 'CLEAR_CART',
-  });
