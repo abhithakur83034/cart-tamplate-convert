@@ -30,6 +30,7 @@ import Cart from "./component/Cart";
 import Address from "./component/Address";
 import Success from "./component/Success";
 import Cancel from "./component/Cancel";
+import Update from "./component/Update";
 
 function App() {
   
@@ -41,7 +42,6 @@ function App() {
       <Routes>
 
         <Route path="/chatapp" element={<Requireauth> <ChatApp /> </Requireauth>} />
-        <Route path="/profile/:id" element={<Requireauth>   <Profile /> </Requireauth>} />
         <Route path="/contact" element={<Requireauth> <Conttact /> </Requireauth>} />
         <Route path="/faq" element={<Requireauth>   <Faq />  </Requireauth>} />
         <Route path="/aboutus" element={<Requireauth>  <About />  </Requireauth>} />
@@ -54,18 +54,21 @@ function App() {
         <Route path="/showfeedback" element={<Requireauth>  <Showfeedback /></Requireauth>} />
         <Route path="/admintable" element={<Requireauth><Admintable /></Requireauth>} />
         <Route path="/addproducts" element={<Requireauth>  <Addproduct /></Requireauth>} />
+        <Route path="/profile/:id" element={<Requireauth>   <Profile /> </Requireauth>} />   
+        <Route path="/profile" element={<Requireauth>   <Profile /> </Requireauth>} />       
+        <Route path="/update/:id" element={<Requireauth><Update /></Requireauth>} />
+        <Route path="/success" element={<Requireauth><Success /></Requireauth>} />
+        <Route path="/cancel" element={<Requireauth><Cancel /></Requireauth>} />
+        <Route path="/address" element={<Requireauth><Address /></Requireauth>} />
+        <Route path="/cart" element={<Requireauth><Cart /></Requireauth>} />
+        <Route path="/adminprofile" element={<Requireauth><Adminprofile /></Requireauth>} />
+        
+
         <Route path="/login" element={<Requireaccess><Login /></Requireaccess>} />
         <Route path="/register" element={<Requireaccess><Register /></Requireaccess>} />
         <Route path="/admin" element={<Requireaccess><Admin /></Requireaccess>} />
-        <Route path="/profile/:id" element={<Requireauth>   <Profile /> </Requireauth>} />
-        <Route path="/profile" element={<Requireauth>   <Profile /> </Requireauth>} />
 
 
-        <Route path="/success" element={<Success />} />
-        <Route path="/cancel" element={<Cancel />} />
-        <Route path="/address" element={<Address />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/adminprofile" element={<Adminprofile />} />
         <Route path="/" element={<Show />} />
         <Route path="/forgetpassword" element={<Forgetpassword />} />
         <Route path="/resetpassword/:id/:token" element={<Resetpassword />} />

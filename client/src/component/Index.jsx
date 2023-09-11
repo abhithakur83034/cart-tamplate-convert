@@ -23,18 +23,18 @@ const Index = () => {
 
 
 
+    const cartData = useSelector((state) => state.cartData);
 
 
-
-    
-  const cartData = useSelector((state) => state.cartData);
-
+    const handelprofile = (id) => {
+        navigate(`/profile/${id}`)
+    }
     return (
         <>
             <header id="header" className="header fixed-top d-flex align-items-center">
 
                 <div className="d-flex align-items-center justify-content-between">
-                    <Link to="index.html" className="logo d-flex align-items-center">
+                    <Link to="#" className="logo d-flex align-items-center">
                         <img src="assets/img/logo.png" alt="" />
                         <span className="d-none d-lg-block">Next Cart.com</span>
                     </Link>
@@ -70,12 +70,13 @@ const Index = () => {
                                                     admin || user ?
                                                         (
                                                             <>
-                                                                <li>
-                                                                    <Link to="/profile/:id" className="dropdown-item d-flex align-items-center" >
+                                                                <li className="nav-item">
+                                                                    <span style={{ cursor: "pointer" }} onClick={() => { handelprofile(userinfo._id) }} className="dropdown-item d-flex align-items-center">
                                                                         <i className="bi bi-person"></i>
-                                                                        <span>My Profile</span>
-                                                                    </Link>
+                                                                        <span >Profile</span>
+                                                                    </span>
                                                                 </li>
+
                                                                 <li>
                                                                     <hr className="dropdown-divider" />
                                                                 </li>
@@ -128,7 +129,7 @@ const Index = () => {
                                         <li className="nav-item dropdown pe-3">
 
                                             <Link to="#" className="nav-link nav-profile d-flex align-items-center " data-bs-toggle="dropdown">
-                                                <img src="assets/img/profile-img.jpg" alt="Profile" className="rounded-circle" />
+                                                <img src="assets/img/abhi.jpg" height="100px" alt="Profile" className="rounded-circle" />
                                                 <span className="d-none d-md-block dropdown-toggle ps-2">{admininfp.name}</span>
                                             </Link>
                                             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -143,22 +144,22 @@ const Index = () => {
                                                     admin || user ?
                                                         (
                                                             <>
-                                                               {
-                                                                user ?
-                                                                <li>
-                                                                <Link to="/profile" className="dropdown-item d-flex align-items-center" >
-                                                                    <i className="bi bi-person"></i>
-                                                                    <span>My Profile</span>
-                                                                </Link>
-                                                            </li>
-                                                            :
-                                                            <li>
-                                                            <Link to="/profile" className="dropdown-item d-flex align-items-center" >
-                                                                <i className="bi bi-person"></i>
-                                                                <span>My Profile</span>
-                                                            </Link>
-                                                        </li>
-                                                               }
+                                                                {
+                                                                    user ?
+                                                                        <li>
+                                                                            <Link to="/profile" className="dropdown-item d-flex align-items-center" >
+                                                                                <i className="bi bi-person"></i>
+                                                                                <span>My Profile</span>
+                                                                            </Link>
+                                                                        </li>
+                                                                        :
+                                                                        <li>
+                                                                            <Link to="/profile" className="dropdown-item d-flex align-items-center" >
+                                                                                <i className="bi bi-person"></i>
+                                                                                <span>My Profile</span>
+                                                                            </Link>
+                                                                        </li>
+                                                                }
                                                                 <li>
                                                                     <hr className="dropdown-divider" />
                                                                 </li>
@@ -210,13 +211,11 @@ const Index = () => {
                             <span>Home</span>
                         </Link>
                     </li>
-
-
                     {
                         admin || user ?
                             (
                                 <>
-                                    
+
                                     {
                                         admin ?
                                             <li className="nav-item">
@@ -230,14 +229,14 @@ const Index = () => {
                                     }
                                     {
                                         cartData.length !== 0 ?
-                                        <li className="nav-item">
-                                        <Link to="/cart" className="nav-link collapsed" >
-                                            <i className="bi bi-card-list"></i>
-                                            <span>Cart <b style={{ color: "red" }}>{cartData.length}</b> </span>
-                                        </Link>
-                                    </li>
-                                    :
-                                    ""
+                                            <li className="nav-item">
+                                                <Link to="/cart" className="nav-link collapsed" >
+                                                    <i className="bi bi-card-list"></i>
+                                                    <span>Cart <b style={{ color: "red" }}>{cartData.length}</b> </span>
+                                                </Link>
+                                            </li>
+                                            :
+                                            ""
                                     }
                                     <li className="nav-item">
                                         <Link to="/mens" className="nav-link collapsed" >
@@ -263,22 +262,22 @@ const Index = () => {
                                             <span>FAQ</span> </Link>
                                     </li>
 
-                                  {
-                                    user ?
-                                    <li className="nav-item">
-                                    <Link to="/profile/:id" className="nav-link collapsed" >
-                                        <i className="bi bi-card-list"></i>
-                                        <span>Profile</span>
-                                    </Link>
-                                </li>
-                                :
-                                <li className="nav-item">
-                                <Link to="/profile" className="nav-link collapsed" >
-                                    <i className="bi bi-card-list"></i>
-                                    <span>Profile</span>
-                                </Link>
-                            </li>
-                                  }
+                                    {
+                                        user ?
+                                            <li className="nav-item">
+                                                <span style={{ cursor: "pointer" }} onClick={() => { handelprofile(userinfo._id) }} className="nav-link collapsed">
+                                                    <i className="bi bi-card-list"></i>
+                                                    <span >Profile</span>
+                                                </span>
+                                            </li>
+                                            :
+                                            <li className="nav-item">
+                                                <Link to="/profile" className="nav-link collapsed" >
+                                                    <i className="bi bi-card-list"></i>
+                                                    <span>Profile</span>
+                                                </Link>
+                                            </li>
+                                    }
                                     <li className="nav-item">
                                         <Link to="/aboutus" className="nav-link collapsed" >
                                             <i className="bi bi-card-list"></i>
@@ -293,24 +292,14 @@ const Index = () => {
                                             <span>Contact</span>
                                         </Link>
                                     </li>
-                                    {/* <button className="nav-link collapsed" onClick={toggleTheme}>
-                                        <i className="bi bi-card-list"></i>
-                                        <span>Toggle Theme</span>
-                                    </button> */}
-
-
-
                                     <li className="nav-item">
                                         <Link to="/feedback" className="nav-link collapsed" >
                                             <i className="bi bi-card-list"></i>
                                             <span>Feedback</span>
                                         </Link>
                                     </li>
-
-
                                     {
                                         admin ?
-
                                             <li className="nav-item">
                                                 <Link to="/showfeedback" className="nav-link collapsed" >
                                                     <i className="bi bi-card-list"></i>

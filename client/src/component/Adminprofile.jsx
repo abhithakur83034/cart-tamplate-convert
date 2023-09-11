@@ -29,7 +29,7 @@ const Adminprofile = () => {
                       <div className="card">
                         
                         <div className="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                        <img src="assets/img/profile-img.jpg" alt="Admin-Img" className="rounded-circle" />
+                        <img src="assets/img/abhi.jpg" alt="Admin-Img" className="rounded-circle" />
                           <h2>{admin.name}</h2>
                           <h3>{admin.adminemail}</h3>
                           <div className="social-links mt-2">
@@ -42,72 +42,47 @@ const Adminprofile = () => {
                       </div>
                     </div>
                   
-
-
             <div className="col-xl-8">
-
               <div className="card">
                 <div className="card-body pt-3">
                   <ul className="nav nav-tabs nav-tabs-bordered">
-
                     <li className="nav-item">
                       <button className="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
                     </li>
-
-                   
-
-
                   </ul>
                   <div className="tab-content pt-2">
-
                     <div className="tab-pane fade show active profile-overview" id="profile-overview">
                       <h5 className="card-title">About</h5>
-                     
-                          <img src="assets/img/profile-img.jpg" alt="Admin-Img" className="rounded-circle" />
+                          <img src="assets/img/abhi.jpg" height="200px" alt="Admin-Img" className="rounded-circle" />
                         <p className="small fst-italic">{admin.about}  </p> 
-                         
-
                       <h5 className="card-title">Profile Details</h5>
-
                               <div className="row">
                                 <div className="col-lg-3 col-md-4 label ">Full Name</div>
                                 <div className="col-lg-9 col-md-8">{admin.name}</div>
                               </div>
-                           
-
-
                               <div className="row">
                                 <div className="col-lg-3 col-md-4 label ">Country</div>
                                 <div className="col-lg-9 col-md-8">{admin.country}</div>
                               </div>
-                           
                               <div className="row">
                                 <div className="col-lg-3 col-md-4 label ">Address</div>
                                 <div className="col-lg-9 col-md-8">{admin.address}</div>
                               </div>
-                            
-
                               <div className="row">
                                 <div className="col-lg-3 col-md-4 label ">Mobile</div>
                                 <div className="col-lg-9 col-md-8">{admin.mobile}</div>
                               </div>
-                          
                               <div className="row">
                                 <div className="col-lg-3 col-md-4 label ">Email</div>
                                 <div className="col-lg-9 col-md-8">{admin.adminemail}</div>
                               </div>
-                           
-
                     </div>
-
-                    
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
-
       </main>
       <Footer/>
 

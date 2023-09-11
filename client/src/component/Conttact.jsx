@@ -1,8 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Footer from './Footer'
+import { useForm } from 'react-hook-form'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const Conttact = () => {
+  const { register, handleSubmit } = useForm()
+  const onSubmit=(data)=>{
+  axios.post("http://localhost:4500/contact/contacts")
+  .then((res)=>{
+    console.log(res.data)
+    toast.success("contact has been added")
+  }).catch((error)=>{
+    console.log(error)
+    toast.error("unable to add contact")
+  })
+    console.log(data)
+  }
   return (
     <>
     <main id="main" className="main">
@@ -18,13 +33,9 @@ const Conttact = () => {
     </ol>
   </nav>
 </div>
-
 <section className="section contact">
-
   <div className="row gy-4">
-
     <div className="col-xl-6">
-
       <div className="row">
         <div className="col-lg-6">
           <div className="info-box card">
@@ -57,52 +68,35 @@ const Conttact = () => {
           </div>
         </div>
       </div>
-
     </div>
-
     <div className="col-xl-6">
       <div className="card p-4">
-        <form action="forms/contact.php" method="post" className="php-email-form">
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="row gy-4">
-
             <div className="col-md-6">
-              <input type="text" name="name" className="form-control" placeholder="Your Name" required/>
+              <input type="text" name="name" className="form-control" placeholder="Your Name" required {...register("name")} />
             </div>
-
             <div className="col-md-6 ">
-              <input type="email" className="form-control" name="email" placeholder="Your Email" required/>
+              <input type="email" className="form-control" name="email" placeholder="Your Email" required {...register("email")}/>
             </div>
-
             <div className="col-md-12">
-              <input type="text" className="form-control" name="subject" placeholder="Subject" required/>
+              <input type="text" className="form-control" name="subject" placeholder="Subject" required {...register("subject")}/>
             </div>
-
             <div className="col-md-12">
-              <textarea className="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+              <textarea className="form-control" name="message" rows="6" placeholder="Message" required {...register("message")}></textarea>
             </div>
-
             <div className="col-md-12 text-center">
-              <div className="loading">Loading</div>
-              <div className="error-message"></div>
-              <div className="sent-message">Your message has been sent. Thank you!</div>
-
-              <button type="submit">Send Message</button>
+              
+              <button type="submit" className='btn btn-info'>Send Message</button>
             </div>
-
           </div>
         </form>
       </div>
-
     </div>
-
   </div>
-
 </section>
-
 </main>
-
 <Footer/>
-
     </>
   )
 }

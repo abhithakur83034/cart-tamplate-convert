@@ -61,9 +61,9 @@ const Profile = () => {
                     <div className="col-xl-4">
 
                       <div className="card">
-                        
+
                         <div className="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                        <img src="assets/img/profile-img.jpg" alt="Admin-Img" className="rounded-circle" />
+                          <img src="assets/img/abhi.jpg" alt="Admin-Img" className="rounded-circle" />
                           <h2>{admin.name}</h2>
                           <h3>{admin.adminemail}</h3>
                           <div className="social-links mt-2">
@@ -129,14 +129,14 @@ const Profile = () => {
                       <h5 className="card-title">About</h5>
                       {
                         admin ?
-                        (
-                          <>
-                          <img src="assets/img/profile-img.jpg" alt="Admin-Img" className="rounded-circle" />
-                        <p className="small fst-italic">{admin.about}  </p> 
-                          </>
-                        )
-                        :
-                         <p className="small fst-italic"> {user.about} </p>
+                          (
+                            <>
+                              <img src="assets/img/abhi.jpg" height="200px" alt="Admin-Img" className="rounded-circle" />
+                              <p className="small fst-italic">{admin.about}  </p>
+                            </>
+                          )
+                          :
+                          <p className="small fst-italic"> {user.about} </p>
                       }
 
                       <h5 className="card-title">Profile Details</h5>
@@ -259,7 +259,7 @@ const Profile = () => {
                     </div>
 
                     {
-                       !user ? " " :
+                      !user ? " " :
                         (
                           <>
                             <div className="tab-pane fade profile-edit pt-3" id="profile-edit">
@@ -270,14 +270,12 @@ const Profile = () => {
                                   <div className="col-md-8 col-lg-9">
                                     <img src={`http://localhost:4500/img/${user.image}`} alt="Profile" />
                                     <div className="pt-2">
-                                      {/* <input type="file" className="bi bi-upload" /> */}
-                                      <label for="file">
-                                        <i className="bi bi-upload" style={{ cursor: "pointer" }}></i>
-                                        {/* <input type="file" id="file" name="image"   {...register("image")} /> */}
-                                        <input type="file" className='form-control' style={{ display: "none" }}  name='image' {...register('image')} />
-
+                                      <input type="file" id="fileInput" style={{ display: "none" }} name="image" {...register('image')}/>
+                                      <label htmlFor="fileInput" style={{ cursor: "pointer" }}>
+                                        <span role="img" aria-label="Upload">📁</span>
                                       </label>
                                     </div>
+
                                   </div>
                                 </div>
 
@@ -292,7 +290,7 @@ const Profile = () => {
                                 <div className="row mb-3">
                                   <label for="about" className="col-md-4 col-lg-3 col-form-label">About</label>
                                   <div className="col-md-8 col-lg-9">
-                                    <textarea name="about" className="form-control" id="about" style={{ height: "100px", resize:"none" }} {...register("about")}>{user.about}</textarea>
+                                    <textarea name="about" className="form-control" id="about" style={{ height: "100px", resize: "none" }} {...register("about")}>{user.about}</textarea>
                                   </div>
                                 </div>
 
@@ -348,7 +346,7 @@ const Profile = () => {
         </section>
 
       </main>
-      <Footer/>
+      <Footer />
 
     </>
   )

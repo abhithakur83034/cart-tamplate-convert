@@ -1,7 +1,7 @@
 const UserModel = require("../model/usermodel");
 
 const updateProfile = async (req, res) => {
-  console.log(req.file)
+  console.log(req.file);
   try {
     // Find the user by their unique identifier (e.g., user ID)
     const userId = req.params.id;
@@ -10,7 +10,7 @@ const updateProfile = async (req, res) => {
     const updateFields = {};
 
     // Check and update each field individually
-    if (req.file.filename !== undefined) {
+    if (req.file && req.file.filename !== undefined) {
       updateFields.image = req.file.filename;
     }
 
@@ -45,7 +45,7 @@ const updateProfile = async (req, res) => {
     const updatedUser = await UserModel.findByIdAndUpdate(
       userId,
       {
-        $set: updateFields, 
+        $set: updateFields,
       },
       {
         new: true, // Return the updated user data

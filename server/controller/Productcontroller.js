@@ -39,22 +39,43 @@ const findForUpdateProduct = async (req, res) => {
     res.status(201).send(product);
   } catch (error) {
     console.log(error);
-    res.status(500).send("Internal Server Error");
+    res.status(500).send("Internal Server Errorppppp");
   }
 };
 
 const UpdateProduct = async (req, res) => {
   try {
-    const product = await productmodel.updateOne(
+    const { name, price, quality, select, quantity } = req.body;
+    const updateFields = {
+      name,
+      price,
+      quality,
+      select,
+      quantity,
+    };
+
+    // Check if a new image file was provided in the request
+    if (req.file && req.file.filename) {
+      updateFields.image = req.file.filename;
+    }
+
+    const updatedProduct = await productmodel.updateOne(
       { _id: req.params.id },
-      { $set: req.body }
+      { $set: updateFields }
     );
-    res.status(201).send(product);
+
+    if (updatedProduct.nModified === 0) {
+      return res.status(404).send("Product not found");
+    }
+
+    res.status(200).send("Product updated successfully");
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send("Internal Server Error");
   }
 };
+
+
 
 const deleteProduct = async (req, res) => {
   try {

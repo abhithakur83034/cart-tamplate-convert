@@ -17,6 +17,8 @@ const productRoute = require("./route/productRoute");
 const feedbackRoute = require("./route/fedbackRoute");
 const addressRouter = require("./route/addressRouter");
 const profileRouter = require("./route/profileRoute");
+const contactRouter = require("./route/contactroute")
+
 
 app.use("/user", userRoute);
 app.use("/admin", adminRoute);
@@ -24,7 +26,7 @@ app.use("/product", productRoute);
 app.use("/fb", feedbackRoute);
 app.use("/address", addressRouter);
 app.use("/profile", profileRouter);
-
+app.use("/contact",contactRouter)
 // checkout payment=======================
 
 app.post("/api/create-checkout-session", async (req, res) => {

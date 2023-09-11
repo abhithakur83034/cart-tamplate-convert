@@ -11,8 +11,7 @@ const Productreducer  = (state = initialState, action) => {
         ...state,
         data:action.payload
       }
-   case "CLEAR_CART":
-    return {initialState}
+  
     default:
       return state;
   }

@@ -5,32 +5,19 @@ import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const cartData = useSelector((state) => state.cartData);
-    console.log("from cart", cartData[0].userdata._id)
+    // console.log("from cart", cartData[0].userdata._id)
 
 
-    const user = JSON.parse(localStorage.getItem('user'))
-    console.log(user)
+    // const user = JSON.parse(localStorage.getItem('user'))
+    // console.log(user)
 
     const dispatch = useDispatch()
 
-    let calculateTotalPrice = cartData.reduce(
-        (total, item) => total + item.quantity * item.price,
-        0
-    );
+    let calculateTotalQuantity = cartData.reduce((total, item) => total + item.quantity , 0);
+    let calculateTotalPrice = cartData.reduce((total, item) => total + item.quantity * item.price, 0);
+    
+    console.log(parseInt(calculateTotalQuantity))
 
-
-    console.log(calculateTotalPrice)
-
-
-
-    // let totalAmmount= cartData.reduce((total,item)=>total + item.quantity*item.price)
-
-    // console.log(totalAmmount)
-    const calculateTotalQuantity = () => {
-        return cartData.reduce((total, product) => {
-            return total + product.quantity;
-        }, 0);
-    };
 
     return (
         <>
@@ -60,7 +47,6 @@ const Cart = () => {
                                                 <h1>Cart Products</h1>
                                             </div>
                                         </div>
-
                                         <div className="row">
                                             {cartData.map((item, index) => (
                                                 <div className="col-sm-4" key={index}>
@@ -86,10 +72,9 @@ const Cart = () => {
                                                 </div>
                                             ))}
                                         </div>
-
                                         <div className="row">
                                             <div className="col-sm-12">
-                                                <p>Total Quantity: {calculateTotalQuantity()}</p>
+                                                <p>Total Quantity: {parseInt(calculateTotalQuantity)}</p>
                                             </div>
                                             <div className="col-sm-12">
                                                 <p>Total Price: {calculateTotalPrice}</p>

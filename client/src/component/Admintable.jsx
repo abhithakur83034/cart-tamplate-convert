@@ -78,11 +78,9 @@ const Admintable = () => {
                   </table>
                 </div>
               </div>
-
             </div>
           </div>
         </section>
-
       </main>
      <Footer/>
 

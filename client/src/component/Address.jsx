@@ -2,11 +2,10 @@ import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { loadStripe } from '@stripe/stripe-js';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 const Address = () => {
-  const dispatch = useDispatch()
   const PUBLIC_STRIPE_PUBLISHABLE_KEY =
     'pk_test_51NiF8vSJv0p18kjN1GbZU336KaCkQWArr9WsaHT1QgugwrdsQO4RdyKZ2cr5oivj2Jb8asN5Xf52e9Jp0szzWid900XWszkGfO';
   const carts = useSelector((state) => state.cartData);
@@ -26,7 +25,7 @@ const Address = () => {
       });
   };
 
-  // Stripe payment
+  // Stripe payment=============================================================================
   const makePayment = async () => {
     const stripe = await loadStripe(PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
@@ -63,7 +62,7 @@ const Address = () => {
       if (result.error) {
         console.log('Stripe error:', result.error);
       } else if (result.paymentIntent) {
-        dispatch({ type: "CLEAR_CART" })
+        
         console.log('Payment successful');
       }
     } catch (error) {

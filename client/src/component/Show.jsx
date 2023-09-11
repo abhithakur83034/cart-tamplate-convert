@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { toast } from "react-toastify";
 import '../style/logo.css'
@@ -14,11 +14,11 @@ function Show() {
     const [data, setData] = useState([]);
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
 
-    
-  const addtocartData = useSelector((state) => state);
-        console.log("show addtocart",addtocartData.productData)
+    const addtocartData = useSelector((state) => state);
+    console.log("show addtocart", addtocartData.productData)
 
 
     const productData = useSelector((state) => state.productData);
@@ -41,27 +41,49 @@ function Show() {
 
     //   console.log(data)
 
+
+    // handel delete====================================================
+
+    const handelDelete = (id) => {
+        axios.delete(`http://localhost:4500/product/delete/${id}`)
+            .then((res) => {
+                console.log(res.data)
+                if (res.data.deletedCount === 1)
+                    toast.success("Product deleted")
+            }).catch((error) => {
+                console.log(error)
+                toast.error(error)
+            })
+    }
+
+
+    const handelEdit = (id) => {
+        navigate('/update/' + id)
+    }
+
+
+
     // add to cart handller=========================================
-   
+
     const handleAddToCart = (item) => {
         if (user) {
-          const existingCartItem = addtocartData.find(
-            (cartItem) => cartItem._id === item._id
-          );
-    
-          if (existingCartItem) {
-            toast.warning("You have already added this product");
-          } else {
-            dispatch({
-              type: "ADD_TO_CART",
-              payload: { ...item,userdata },
-            });
-            toast.success("Item added to cart");
-          }
+            const existingCartItem = addtocartData.find(
+                (cartItem) => cartItem._id === item._id
+            );
+
+            if (existingCartItem) {
+                toast.warning("You have already added this product");
+            } else {
+                dispatch({
+                    type: "ADD_TO_CART",
+                    payload: { ...item, userdata },
+                });
+                toast.success("Item added to cart");
+            }
         } else {
-          toast.warning("You have to login first");
+            toast.warning("You have to login first");
         }
-      };
+    };
 
 
     return (
@@ -92,9 +114,13 @@ function Show() {
                                                     <div className="card-footer">
                                                         {
                                                             admin ?
-                                                                <button type="submit" className='btn btn-danger form-control'>Delete</button>
+                                                                <>
+                                                                    <p><button type="submit" className='btn btn-danger form-control' onClick={() => handelDelete(item._id)}>Delete</button> </p>
+                                                                    <p> <button type="submit" className='btn btn-info form-control' onClick={() => handelEdit(item._id)}>Edit Product</button> </p>
+
+                                                                </>
                                                                 :
-                                                                <button type="submit" className='btn btn-success form-control'  onClick={() => handleAddToCart(item)}>Add To Cart</button>
+                                                                <button type="submit" className='btn btn-success form-control' onClick={() => handleAddToCart(item)}>Add To Cart</button>
 
                                                         }
                                                     </div>

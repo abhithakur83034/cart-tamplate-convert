@@ -31,6 +31,20 @@ const Baby = () => {
 
 
 
+    const handelDelete=(_id)=>{
+        axios.delete(`http://localhost:4500/product/delete/${_id}`)
+        .then((res)=>{
+            console.log(res.data)
+            if(res.data.deletedCount === 1)
+            toast.success("Product deleted")
+        }).catch((error)=>{
+            console.log(error)
+            toast.error(error)
+        })
+    }
+
+
+
 
     const handleAddToCart = (item) => {
       if (user) {
@@ -70,7 +84,7 @@ const Baby = () => {
                             <div key={index}>
                                 <div class="col">
                                     <div class="card">
-                                        <img src={`http://localhost:4500/img/${item.image}`} class="card-img-top" alt="..." />
+                                        <img src={`http://localhost:4500/img/${item.image}`} height="300px" class="card-img-top" alt="..." />
                                         <div class="card-body">
                                             <h5 class="card-title"> {item.name} </h5>
                                             <p class="card-text">Price :: {item.price} </p>
@@ -79,7 +93,7 @@ const Baby = () => {
                                         <div className="card-footer">
                                             {
                                                 admin ?
-                                                    <button type="submit" className='btn btn-danger form-control'>Delete</button>
+                                                    <button type="submit" className='btn btn-danger form-control' onClick={() => handelDelete(item._id)}>Delete</button>
                                                     :
                                                     <button type="submit"  onClick={() => handleAddToCart(item)} className='btn btn-success form-control'>Add To Cart</button>
 

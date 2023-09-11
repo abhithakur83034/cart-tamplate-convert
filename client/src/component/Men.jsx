@@ -31,6 +31,21 @@ const Men = () => {
     // console.log(data)
 
 
+    const handelDelete=(_id)=>{
+        axios.delete(`http://localhost:4500/product/delete/${_id}`)
+        .then((res)=>{
+            console.log(res.data)
+            if(res.data.deletedCount === 1)
+            toast.success("Product deleted")
+        }).catch((error)=>{
+            console.log(error)
+            toast.error(error)
+        })
+    }
+
+
+
+
     const handleAddToCart = (item) => {
         if (user) {
             const existingCartItem = addtocartData.find((cartItem) => cartItem._id === item._id);
@@ -78,7 +93,7 @@ const Men = () => {
                                                     <div className="card-footer">
                                                         {
                                                             admin ?
-                                                                <button type="submit" className='btn btn-danger form-control'>Delete</button>
+                                                                <button type="submit" className='btn btn-danger form-control' onClick={() => handelDelete(item._id)}>Delete</button>
                                                                 :
                                                                 <button type="submit" onClick={() => handleAddToCart(item)} className='btn btn-success form-control'>Add To Cart</button>
 
